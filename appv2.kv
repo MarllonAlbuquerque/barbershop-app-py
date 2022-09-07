@@ -1,0 +1,895 @@
+JanelaPrincipal:
+    ScreenOne:#Login
+    ScreenTwo:#Cadastro
+    ScreenThree:#Tela Principal
+    ScreenFour:#Horários
+    ScreenFive:#Serviços
+    ScreenSix:#Esqueceu a senha?
+    ScreenAdm:#Tela do Admin
+
+#-----Tela 1, Login-----
+<ScreenOne>:
+    name:"ScreenOne"
+    canvas.before:
+        Color:
+            rgba:0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDBoxLayout:
+        size_hint_y: None
+        height: "290dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.78}
+
+        FitImage:
+            size_hint_y: 5
+            source: './img/b.jpeg'
+    MDTextField:
+        hint_text: "Email"
+        mode: "fill"
+        pos_hint:{'center_x':.5 , 'center_y':.4}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+        id:email
+    MDTextField:
+        hint_text: "Senha"
+        mode: "fill"
+        pos_hint:{'center_x':.5 , 'center_y':.3}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+        id:senha 
+    MDRectangleFlatButton:
+        text: "Login"
+        text_color: 0,0,0,1
+        line_color: .2, .1, .0, 1
+        md_bg_color:.87, .74, .61, 1
+        pos_hint:{'center_x':.5 , 'center_y':.2}
+        size_hint_x:.8
+        size_hint_y:.07
+        on_release:
+            app.root.validacao()
+    MDRoundFlatButton:
+        text: "Cadastre-se"
+        text_color: 1, 1, 1, 1
+        pos_hint:{'center_x':.5 , 'center_y':.05}
+        size_hint_x:.3
+        md_bg_color: [0, 0, 0, 1]
+        line_color: [0, 0, 0, 0.0]
+        on_release:
+            app.root.current="ScreenTwo"
+            root.manager.transition.direction = "up"
+    MDRoundFlatButton:
+        text: "Esqueceu a senha ?"
+        text_color: 1, 1, 1, 1
+        pos_hint:{'center_x':.5 , 'center_y':.1}
+        size_hint_x:.3
+        md_bg_color: [0, 0, 0, 1]
+        line_color: [0, 0, 0, 0.0]
+        on_press:app.root.current="ScreenSix"
+    MDIconButton:
+        icon: "home-roof"
+        on_press:
+            app.root.current="ScreenAdm"
+            app.root.admin()
+
+
+
+
+#-----Tela 2, Cadastro-----
+<ScreenTwo>:
+    name:"ScreenTwo"
+    canvas.before:
+        Color:
+            rgba:0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDBoxLayout:
+        size_hint_y: None
+        height: "80dp"
+        size_hint_x: None
+        height: "80dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.9 , 'center_x':.5}
+
+        FitImage:
+            size_hint_y:5
+            source: './img/bigodepng.png'
+    MDLabel:
+        text: "Crie sua conta"
+        halign: "center"
+        pos_hint:{'center_y':.8}
+        font_style:"H5"
+        text_color:.87, .74, .61, 1
+        theme_text_color: "Custom"
+    MDTextField:
+        hint_text: "Email"
+        mode: "fill"
+        pos_hint:{'center_x':.5 , 'center_y':.7}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+        id:emailid
+    MDTextField:
+        hint_text: "Nome"
+        mode: "fill"
+        pos_hint:{'center_x':.5 , 'center_y':.6}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+        id:nomeid
+    MDTextField:
+        hint_text: "Senha"
+        mode: "fill"
+        pos_hint:{'center_x':.5 , 'center_y':.5}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+        id:senhaid
+    MDTextField:
+        hint_text: "Confirmar Senha"
+        mode: "fill"
+        pos_hint:{'center_x':.5 , 'center_y':.4}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+        id:senhaid2
+    MDRectangleFlatButton:
+        text: "Salvar"
+        text_color: 0,0,0,1
+        line_color: .2, .1, .0, 1
+        md_bg_color:.87, .74, .61, 1
+        pos_hint:{'center_x':.5 , 'center_y':.2}
+        size_hint_x:.8
+        size_hint_y:.07
+        on_press:
+            app.root.salvarcad()
+    MDIconButton:
+        icon: "arrow-left-circle"
+        on_release:
+            app.root.current="ScreenOne"
+
+
+
+
+
+#------Tela 3, Tela Principal-----
+<ScreenThree>:
+    name:"ScreenThree"
+    canvas.before:
+        Color:
+            rgba:1, 1, 1, 0.5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDBoxLayout:
+        size_hint_y: None
+        height: "290dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.78}
+
+        FitImage:#Imagem de fundo
+            size_hint_y: 5
+            source: './img/aa.jpeg'
+    MDLabel:
+        text: "Olá,"
+        halign: "center"
+        pos_hint:{'center_y':.85 , 'center_x':.15}
+        font_style:"H5"
+        text_color:1, 1, 1, 1
+        theme_text_color: "Custom" 
+    MDLabel:
+        text: "Marllon"
+        id:nomelb
+        halign: "center"
+        pos_hint:{'center_y':.8 , 'center_x':.2}
+        font_style:"H5"
+        text_color:.99, .74, .61, 1
+        theme_text_color: "Custom"
+
+    MDBoxLayout:
+        size_hint_y: None
+        height: "50dp"
+        size_hint_x: None
+        width: "50dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.83 , 'center_x':.9}
+        
+        FitImage:
+            size_hint_y:5
+            source: './img/p2.jpeg' 
+            radius: 20,20,20,20
+    MDBoxLayout:
+        size_hint_y: None
+        height: "50dp"
+        size_hint_x: None
+        width: "50dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.78 , 'center_x':.9}
+        
+    MDBoxLayout:
+        size_hint_y: None
+        height: "100dp"
+        size_hint_x: None
+        height: "100dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.93 , 'center_x':.5}
+
+        FitImage:
+            size_hint_y:5
+            source: './img/bigodepng.png'
+
+    #BOX PRINCIPAL ------
+    MDBoxLayout:
+        size_hint_y: None
+        height: "500dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.35 }
+        md_bg_color:0, 0, 0, 1
+        radius: 20,20,0,0
+
+    MDLabel:
+        text: "Horário"
+        halign:"center"
+        pos_hint:{'center_y':.45 , 'center_x':.3}
+            
+    MDBoxLayout:
+        size_hint_y: None
+        height: "120dp"
+        size_hint_x: None
+        width: "120dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.55 , 'center_x':.3}
+        md_bg_color:1, 1, 1, 0.05
+        radius: 20,20,20,20
+        adaptive_size: True
+
+        MDIconButton:
+            icon: "clock-plus"
+            icon_size: "64sp"
+            on_press:
+                app.root.current="ScreenFour"
+                app.root.preocupado()
+                
+    MDLabel:
+        text: "Serviços"
+        halign:"center"
+        pos_hint:{'center_y':.45 , 'center_x':.7}
+    MDBoxLayout:
+        size_hint_y: None
+        height: "120dp"
+        size_hint_x: None
+        width: "120dp"
+        orientation: 'vertical'
+        adaptive_size: True
+        pos_hint:{'center_y':.55 , 'center_x':.7}
+        md_bg_color:1, 1, 1, 0.05
+        radius: 20,20,20,20
+
+        MDIconButton:
+            icon: "content-cut"
+            icon_size: "64sp"
+            on_press:app.root.current="ScreenFive"
+    MDLabel:
+        text: "Agendamento"
+        halign:"center"
+        pos_hint:{'center_y':.2 , 'center_x':.3}
+    MDBoxLayout:
+        size_hint_y: None
+        height: "120dp"
+        size_hint_x: None
+        width: "120dp"
+        orientation: 'vertical'
+        adaptive_size: True
+        pos_hint:{'center_y':.3 , 'center_x':.3}
+        md_bg_color:1, 1, 1, 0.05
+        radius: 20,20,20,20
+
+        MDIconButton:
+            icon: "calendar-multiple-check"
+            icon_size: "64sp"
+            on_press:app.root.sdp()
+    MDBoxLayout:
+        size_hint_y: None
+        height: "30dp"
+        size_hint_x: None
+        width: "150dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.35 , 'center_x':.7}
+        md_bg_color:1, 1, 1, 0.05
+        MDLabel:
+            text:"Data: Hoje"
+            id:datalb
+            halign:"center"
+            font_style:"H6"
+
+    MDBoxLayout:
+        size_hint_y: None
+        height: "30dp"
+        size_hint_x: None
+        width: "150dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.3 , 'center_x':.7}
+        md_bg_color:1, 1, 1, 0.05
+        MDLabel:
+            text:"Hora"
+            id:horalb
+            halign:"center"
+            font_style:"H6"
+
+    MDBoxLayout:
+        size_hint_y: None
+        height: "30dp"
+        size_hint_x: None
+        width: "150dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.25 , 'center_x':.7}
+        md_bg_color:1, 1, 1, 0.05
+        MDLabel:
+            text:"Corte"
+            id:cortelb
+            halign:"center"
+            font_style:"H6"
+
+    MDFlatButton:
+        text: "Salvar"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        md_bg_color:0,0,0,0.2
+        pos_hint:{'center_y':.08 , 'center_x':.5}
+        md_bg_color:.87, .74, .61, 1
+        text_color: 0,0,0,1
+        on_press:
+            app.root.salvarbd()
+
+        
+    MDIconButton:
+        icon: "arrow-left-circle"
+        on_press: app.root.current="ScreenOne"
+
+
+
+
+
+#-----Tela 4, Horários-----
+<ScreenFour>:
+    name:"ScreenFour"
+    canvas.before:
+        Color:
+            rgba:1, 1, 1, 0.8
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDFloatLayout:
+        size_hint_y: None
+        height: "50dp"
+        size_hint_x: None
+        width: "250dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.95 , 'center_x':.25}
+        md_bg_color:0,0,0,1
+        radius: 20,20,20,20
+    MDLabel:
+        text:"Horários disponivéis: "
+        id:hrdisp
+        font_style:"Body1"
+        text_color:1, 1, 1, 1
+        theme_text_color: "Custom"
+        pos_hint:{'center_y':.95 , 'center_x':.57}
+    MDFloatLayout:
+        size_hint_y: None
+        height: "500dp"
+        size_hint_x: None
+        width: "360dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.46 , 'center_x':.50}
+        md_bg_color:1,1,1,1
+        radius: 20,20,20,20
+        MDRectangleFlatButton:
+            id:07:00
+            text: "07:00"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.9 , 'center_x':.15}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="07:00"
+                app.root.get_screen('ScreenFour').ids['07:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['07:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "07:30"
+            id:07:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.9 , 'center_x':.35}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="07:30"
+                app.root.get_screen('ScreenFour').ids['07:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['07:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "08:00"
+            id:08:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.7 , 'center_x':.15}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="08:00"
+                app.root.get_screen('ScreenFour').ids['08:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['08:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "08:30"
+            id:08:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.7 , 'center_x':.35}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="08:30"
+                app.root.get_screen('ScreenFour').ids['08:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['08:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "09:00"
+            id:09:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.5 , 'center_x':.15}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="09:00"
+                app.root.get_screen('ScreenFour').ids['09:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['09:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "09:30"
+            id:09:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.5 , 'center_x':.35}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="09:30"
+                app.root.get_screen('ScreenFour').ids['09:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['09:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "10:00"
+            id:10:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.3 , 'center_x':.15}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="10:00"
+                app.root.get_screen('ScreenFour').ids['10:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['10:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "10:30"
+            id:10:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.3 , 'center_x':.35}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="10:30"
+                app.root.get_screen('ScreenFour').ids['10:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['10:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "11:00"
+            id:11:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.1 , 'center_x':.15}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="11:00"
+                app.root.get_screen('ScreenFour').ids['11:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['11:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "11:30"
+            id:11:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.1 , 'center_x':.35}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="11:30"
+                app.root.get_screen('ScreenFour').ids['11:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['11:30'].text_color=(0, 1, 0, 1)
+
+
+
+        MDRectangleFlatButton:
+            text: "01:00"
+            id:01:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.9 , 'center_x':.65}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="01:00"
+                app.root.get_screen('ScreenFour').ids['01:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['01:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "01:30"
+            id:01:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.9 , 'center_x':.85}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="01:30"
+                app.root.get_screen('ScreenFour').ids['01:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['01:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "02:00"
+            id:02:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.7 , 'center_x':.65}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="02:00"
+                app.root.get_screen('ScreenFour').ids['02:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['02:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "02:30"
+            id:02:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.7 , 'center_x':.85}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="02:30"
+                app.root.get_screen('ScreenFour').ids['02:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['02:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "03:00"
+            id:03:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.5 , 'center_x':.65}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="03:00"
+                app.root.get_screen('ScreenFour').ids['03:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['03:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "03:30"
+            id:03:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.5 , 'center_x':.85}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="03:30"
+                app.root.get_screen('ScreenFour').ids['03:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['03:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "04:00"
+            id:04:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.3 , 'center_x':.65}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="04:00"
+                app.root.get_screen('ScreenFour').ids['04:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['04:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "04:30"
+            id:04:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.3 , 'center_x':.85}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="04:30"
+                app.root.get_screen('ScreenFour').ids['04:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['04:30'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "05:00"
+            id:05:00
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.1 , 'center_x':.65}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="05:00"
+                app.root.get_screen('ScreenFour').ids['05:00'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['05:00'].text_color=(0, 1, 0, 1)
+        MDRectangleFlatButton:
+            text: "05:30"
+            id:05:30
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+            line_color: 0, 0, 0, 1
+            pos_hint:{'center_y':.1 , 'center_x':.85}
+            on_release:
+                app.root.get_screen('ScreenThree').ids['horalb'].text="05:30"
+                app.root.get_screen('ScreenFour').ids['05:30'].line_color=(0, 1, 0, 1)
+                app.root.get_screen('ScreenFour').ids['05:30'].text_color=(0, 1, 0, 1)
+    MDIconButton:
+        icon: "arrow-left-circle"
+        on_press: app.root.current="ScreenThree"
+
+
+
+
+#-----Tela 5, Serviços-----
+<ScreenFive>:
+    name:"ScreenFive"
+    canvas.before:
+        Color:
+            rgba:1, 1, 1, 0.8
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDLabel:
+        text:"Serviços"
+        pos_hint: {"center_y": .95, 'center_x':.25}
+        font_style:"Body1"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+
+    MDSwiper:
+        size_hint_y: None
+        height: "500dp"
+        size_hint_x: None
+        width: "300dp"
+        pos_hint: {"center_y": .5, 'center_x':.5}
+    
+        MDSwiperItem:
+            RelativeLayout:
+
+                FitImage:
+                    source: "./img/h7.jpeg"
+                    radius: [20,20,20,20]
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    spacing: "12dp"
+                    md_bg_color:1,1,1,1
+
+                    MDIconButton:
+                        id: icon
+                        icon: "plus-thick"
+                        user_font_size: "40sp"
+                        opposite_colors: True
+                        on_press:
+                            app.root.get_screen('ScreenThree').ids['cortelb'].text = "Moicano"
+
+                    MDLabel:
+                        text: "Moicano  R$25,00"
+                        font_style: "Body1"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": .5}
+                        opposite_colors: True
+
+        MDSwiperItem:
+            RelativeLayout:
+
+                FitImage:
+                    source: "./img/h6.jpeg"
+                    radius: [20,20,20,20]
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    spacing: "12dp"
+                    md_bg_color:1,1,1,1
+
+                    MDIconButton:
+                        id: icon
+                        icon: "plus-thick"
+                        user_font_size: "56sp"
+                        opposite_colors: True
+                        on_press:
+                            app.root.get_screen('ScreenThree').ids['cortelb'].text = "Militar"
+
+                    MDLabel:
+                        text: "Militar R$20,00"
+                        font_style:"Body1"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": .5}
+                        opposite_colors: True
+        MDSwiperItem:
+            RelativeLayout:
+
+                FitImage:
+                    source: "./img/h5.jpeg"
+                    radius: [20,20,20,20]
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    spacing: "12dp"
+                    md_bg_color:1,1,1,1
+
+                    MDIconButton:
+                        id: icon
+                        icon: "plus-thick"
+                        user_font_size: "56sp"
+                        opposite_colors: True
+                        on_press:
+                            app.root.get_screen('ScreenThree').ids['cortelb'].text = "Degradê"
+
+                    MDLabel:
+                        text: "Degradê R$25,00"
+                        font_style:"Body1"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": .5}
+                        opposite_colors: True
+        MDSwiperItem:
+            RelativeLayout:
+
+                FitImage:
+                    source: "./img/h4.jpeg"
+                    radius: [20,20,20,20]
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    spacing: "12dp"
+                    md_bg_color:1,1,1,1
+
+                    MDIconButton:
+                        id: icon
+                        icon: "plus-thick"
+                        user_font_size: "56sp"
+                        opposite_colors: True
+
+                    MDLabel:
+                        text: "MDLabel"
+                        font_style:"Body1"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": .5}
+                        opposite_colors: True
+        MDSwiperItem:
+            RelativeLayout:
+
+                FitImage:
+                    source: "./img/h2.jpeg"
+                    radius: [20,20,20,20]
+
+                MDBoxLayout:
+                    adaptive_height: True
+                    spacing: "12dp"
+                    md_bg_color:1,1,1,1
+
+                    MDIconButton:
+                        id: icon
+                        icon: "plus-thick"
+                        user_font_size: "56sp"
+                        opposite_colors: True
+
+                    MDLabel:
+                        text: "MDLabel"
+                        font_style:"Body1"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": .5}
+                        opposite_colors: True
+    
+    
+
+    MDIconButton:
+        icon: "arrow-left-circle"
+        on_press: app.root.current="ScreenThree"
+
+
+#-----Tela 6, Esqueceu a senha?------
+<ScreenSix>:
+    name:"ScreenSix"
+    canvas.before:
+        Color:
+            rgba:0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        size_hint_y: None
+        height: "80dp"
+        size_hint_x: None
+        height: "80dp"
+        orientation: 'vertical'
+        pos_hint:{'center_y':.95 , 'center_x':.5}
+
+        FitImage:
+            size_hint_y:5
+            source: './bigodepng.png'
+    MDLabel:
+        text: "Esqueceu a senha ?"
+        halign: "center"
+        pos_hint:{'center_y':.8}
+        font_style:"H5"
+        text_color:.87, .74, .61, 1
+        theme_text_color: "Custom"
+    MDLabel:
+        text: "Por favor inserir endereço de email. Você vai receber um código via email"
+        halign: "center"
+        pos_hint:{'center_y':.72}
+        font_style:"Body2"
+        text_color:1, 1, 1, 1
+        theme_text_color: "Custom"
+    MDTextField:
+        hint_text: "Endereço de Email"
+        mode: "fill"
+        max_text_length: 15
+        pos_hint:{'center_x':.5 , 'center_y':.6}
+        size_hint_x:.8
+        fill_color_normal: [.44, .43, .43, 0.2]
+        line_color_focus: .44, .43, .43, 0.2
+        line_color_normal: .44, .43, .43, 1
+        radius: 0, 0, 0, 0
+    MDRectangleFlatButton:
+        text: "Confirmar"
+        text_color: 0,0,0,1
+        line_color: .2, .1, .0, 1
+        md_bg_color:.87, .74, .61, 1
+        pos_hint:{'center_x':.5 , 'center_y':.5}
+        size_hint_x:.8
+        size_hint_y:.08
+    MDIconButton:
+        icon: "arrow-left-circle"
+        on_press: app.root.current="ScreenOne"
+
+#-----Tela 7, Tela do Admin-----
+<SwipeToDeleteItem>:
+    size_hint_y: None
+    height: content.height
+
+    MDCardSwipeLayerBox:
+        padding: "8dp"
+
+        MDIconButton:
+            icon: "trash-can"
+            pos_hint: {"center_y": .5}
+            on_release: app.remove_item(app.root)
+
+    MDCardSwipeFrontBox:
+
+        OneLineListItem:
+            id: content
+            text: root.text
+            _no_ripple_effect: True
+<ScreenAdm>:
+    name:"ScreenAdm"
+    canvas.before:
+        Color:
+            rgba:0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    ScrollView:
+
+        MDList:
+            id: md_list
+            padding: 0
+
+
+
+
+
+
+
+    
+    
+    
